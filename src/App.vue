@@ -1,9 +1,17 @@
 <template>
-  <div class="app p-3 min-h-screen">
+  <div class="app px-2 min-h-screen">
     <div
       v-for="i in 20"
       :key="i"
-      class="absolute inset-0 overflow-hidden pointer-events-none"
+      class="
+        absolute
+        top-0
+        left-0
+        w-full
+        h-full
+        overflow-hidden
+        pointer-events-none
+      "
     >
       <div
         class="glass absolute"
