@@ -111,7 +111,7 @@
         style="flex-basis: 50%"
       >
         <div class="w-full wrapper lg:1/2">
-          <div class="p-3 lg:p-5 glass w-full lg:w-4/5">
+          <div class="p-3 lg:p-5 glass w-full overflow-x-auto lg:w-4/5">
             <p class="text-lg">LatLong</p>
             <h2
               :title="`${country.latlng[0]}, ${country.latlng[1]}`"
@@ -150,7 +150,7 @@
                 >{{ country.callcodeCountries.length }} country</span
               >
               <template slot="popover">
-                <ul class="bg-purple-700 pl-4 max-h-40 overflow-y-scroll">
+                <ul class="bg-purple-700 pl-4 max-h-40 overflow-y-auto">
                   <li
                     class="list-disc"
                     v-for="callcode in country.callcodeCountries"
@@ -180,7 +180,7 @@
                   >{{ country.currencyCountries.length }} country</span
                 >
                 <template slot="popover">
-                  <ul class="bg-purple-700 pl-4 max-h-40 overflow-y-scroll">
+                  <ul class="bg-purple-700 pl-4 max-h-40 overflow-y-auto">
                     <li
                       class="list-disc"
                       v-for="callcode in country.currencyCountries"
