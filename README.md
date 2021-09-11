@@ -10,7 +10,7 @@ HIGHLY RECOMMENDED TO USE CHROME!
 ```
 ## Project setup
 ```
-npm run install
+npm install
     # OR
 yarn install
 ```
