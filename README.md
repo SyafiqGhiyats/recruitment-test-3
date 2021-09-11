@@ -1,12 +1,14 @@
 # recruitment-test-3
 HIGHLY RECOMMENDED TO USE CHROME!
-## how to run 
+## how to run build version
 ```
     cd path/to/project
 
     npm run start
     # OR
     yarn start
+    # OR
+    node start
 ```
 ## Project setup
 ```
