@@ -1,0 +1,59 @@
+@import "tailwind";
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+    color: white;
+}
+html {
+    font-family: "Poppins", sans-serif;
+}
+.glass {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.center {
+    @apply flex justify-center items-center flex-col;
+}
+.title {
+    position: relative;
+    margin-bottom: 1.5rem;
+    & h1 {
+        font-size: 3rem;
+    }
+    & > .glass {
+        inset: 0 2rem;
+        backdrop-filter: blur(1px);
+        border-radius: 8px;
+        transform: rotate(0.015turn);
+        pointer-events: none;
+    }
+}
+.input-box {
+    @apply w-full relative flex items-start flex-col;
+    .input {
+        width: 100%;
+        padding: 0.9rem 2.5rem;
+        flex-grow: 1;
+        font-size: 1rem;
+        &:focus {
+            outline: none;
+        }
+        &::placeholder {
+            color: darken(#fff, 10);
+        }
+    }
+    .input-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0.5rem;
+        width: 25px;
+        &--right {
+            left: auto;
+            right: 0.5rem;
+        }
+    }
+}

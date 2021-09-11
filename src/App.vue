@@ -1,32 +1,40 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="app min-h-screen">
+    <div
+      v-for="i in 20"
+      :key="i"
+      class="absolute inset-0 overflow-hidden pointer-events-none"
+    >
+      <div
+        class="glass absolute"
+        :style="{
+          left: `${genNumber(40, 1440)}px`,
+          top: `${genNumber(20, 1107)}px`,
+          width: `${genNumber(70, 200)}px`,
+          height: `${genNumber(70, 200)}px`,
+          transform: `rotate(${genNumber(0, 360)}deg)`,
+          opacity: `${genNumber(10, 70)}%`,
+        }"
+      ></div>
     </div>
-    <router-view />
+    <div class="max-w-2xl mx-auto">
+      <router-view />
+    </div>
   </div>
 </template>
-
+<script>
+export default {
+  methods: {
+    genNumber(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+  },
+};
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.app {
+  background-image: linear-gradient(to top left, #cc208e 0%, #6713d2 100%);
 }
 </style>
