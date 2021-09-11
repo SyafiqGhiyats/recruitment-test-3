@@ -150,7 +150,7 @@
                 >{{ country.callcodeCountries.length }} country</span
               >
               <template slot="popover">
-                <ul class="bg-purple-700 pl-4 h-20 overflow-y-scroll">
+                <ul class="bg-purple-700 pl-4 max-h-40 overflow-y-scroll">
                   <li
                     class="list-disc"
                     v-for="callcode in country.callcodeCountries"
@@ -180,7 +180,7 @@
                   >{{ country.currencyCountries.length }} country</span
                 >
                 <template slot="popover">
-                  <ul class="bg-purple-700 pl-4 h-20 overflow-y-scroll">
+                  <ul class="bg-purple-700 pl-4 max-h-40 overflow-y-scroll">
                     <li
                       class="list-disc"
                       v-for="callcode in country.currencyCountries"
@@ -237,7 +237,7 @@ export default {
 .tooltip {
   max-width: 150px;
   & .wrapper {
-    width: 80%;
+    width: 100%;
   }
 }
 </style>
