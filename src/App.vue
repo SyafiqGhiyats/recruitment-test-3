@@ -3,15 +3,7 @@
     <div
       v-for="i in 20"
       :key="i"
-      class="
-        absolute
-        top-0
-        left-0
-        w-full
-        h-full
-        overflow-hidden
-        pointer-events-none
-      "
+      class="fixed inset-0 overflow-hidden pointer-events-none"
     >
       <div
         class="glass absolute"
