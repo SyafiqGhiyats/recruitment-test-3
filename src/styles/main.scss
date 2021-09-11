@@ -20,10 +20,7 @@ html {
 .title {
     position: relative;
     margin-bottom: 1.5rem;
-    & h1 {
-        font-size: 3rem;
-    }
-    & > .glass {
+    & .glass {
         inset: 0 2rem;
         backdrop-filter: blur(1px);
         border-radius: 8px;

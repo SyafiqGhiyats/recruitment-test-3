@@ -1,5 +1,5 @@
 <template>
-  <div class="app min-h-screen">
+  <div class="app p-3 min-h-screen">
     <div
       v-for="i in 20"
       :key="i"
@@ -17,9 +17,9 @@
         }"
       ></div>
     </div>
-    <div class="max-w-2xl mx-auto">
-      <router-view />
-    </div>
+    <!-- <div class=""> -->
+    <router-view />
+    <!-- </div> -->
   </div>
 </template>
 <script>

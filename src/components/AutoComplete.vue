@@ -1,12 +1,12 @@
 <template>
-  <div class="w-full">
+  <div class="w-full relative">
     <div class="input-box">
       <input
         type="text"
         ref="input"
         @input="onInput"
         @focus="inputFocused = true"
-        @blur="inputFocused = false"
+        @blur="blur"
         class="input glass"
         placeholder="Search Country..."
       />
@@ -41,19 +41,40 @@
         </svg>
       </span>
     </div>
-    <ul class="glass w-full overflow-x-hidden overflow-y-auto mt-2 max-h-72">
-      <slot name="list" :items="items"></slot>
+    <ul
+      v-if="inputFocused"
+      class="
+        glass
+        w-full
+        overflow-x-hidden
+        absolute
+        overflow-y-auto
+        mt-2
+        max-h-72
+      "
+    >
       <li
-        v-for="(item, i) in items"
+        v-for="(item, i) in countries"
         :key="i"
-        @click="select(i)"
-        class="hover:bg-white text-lg cursor-pointer hover:bg-opacity-10 p-3"
+        class="hover:bg-white text-lg cursor-pointer hover:bg-opacity-10"
       >
-        {{ item }}
+        <router-link
+          class="w-full h-full p-3 block"
+          :to="`detail/${encodeURI(item)}`"
+        >
+          {{ item }}
+        </router-link>
       </li>
       <li
-        v-if="inputFocused"
-        class="hover:bg-white text-lg cursor-pointer hover:bg-opacity-10 p-3"
+        v-if="!countries.length"
+        class="
+          hover:bg-white
+          text-lg
+          transition
+          cursor-pointer
+          hover:bg-opacity-10
+          p-3
+        "
       >
         No data available
       </li>
@@ -63,28 +84,43 @@
 
 <script>
 import { debounce } from "lodash";
+import axios from "axios";
 export default {
   name: "AutoComplete",
-  model: { prop: "value", event: "input" },
-  props: {
-    value: String,
-    loading: Boolean,
-    items: Array,
-  },
+  props: {},
   data: () => ({
+    loading: false,
+    countries: [],
     inputFocused: false,
   }),
   methods: {
-    onInput: debounce(function (e) {
-      this.$emit("input", e.target.value);
-    }, 500),
-    select(item) {
-      console.log(item);
+    blur() {
+      setTimeout(() => {
+        this.inputFocused = false;
+      }, 300);
     },
+    onInput: debounce(async function (e) {
+      //eslint-disable-next-line
+      const value = e.target.value;
+      this.loading = true;
+      try {
+        const { data } = await axios.get(
+          `https://restcountries.eu/rest/v2/name/${value}`
+        );
+        this.countries = [];
+        data.forEach((country) => {
+          this.countries.length < 5 && this.countries.push(country.name);
+        });
+      } catch {
+        this.countries = [];
+      } finally {
+        this.loading = false;
+      }
+    }, 500),
   },
   computed: {
-    showNoData() {
-      return this.$refs.input ? true : false;
+    showList() {
+      return this.inputFocused;
     },
   },
 };
